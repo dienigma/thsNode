@@ -3,15 +3,18 @@ const app = express()
 const path = require('path')
 const file = path.join(__dirname,'file.pdf')
 
+app.set('view engine', 'ejs')
+
 app.get('/',(req,res) => {
     res.send("Hello Chinmay")
 })
 
-app.get('/home',(req,res)=> res.sendFile(path.join(__dirname+'/index.html')))
+app.get('/home',(req,res)=> {
+    res.render('index',{title : "Chinmay"})
+})
 
 app.get('/home/:name', (req,res) => {
-    console.log(req.params)
-    res.send(`Hey welcome ${req.params.name}`)
+    res.render('index',{title : req.params.name})
 })
 
 app.get('/login',(req,res) => res.send('Successfully Logged in.'))
