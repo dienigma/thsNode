@@ -4,6 +4,7 @@ const path = require('path')
 const file = path.join(__dirname,'file.pdf')
 
 app.set('view engine', 'ejs')
+app.use(express.static(path.join(__dirname,'public')))
 
 app.get('/',(req,res) => {
     res.send("Hello Chinmay")
