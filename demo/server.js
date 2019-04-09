@@ -3,9 +3,14 @@ const app = express()
 const path = require('path')
 const file = path.join(__dirname,'file.pdf')
 
+// setting up the template engine
 app.set('view engine', 'ejs')
+
+// Setting up the path for static assets
 app.use(express.static(path.join(__dirname,'public')))
 
+
+// Get routes
 app.get('/',(req,res) => {
     res.send("Hello Chinmay")
 })
