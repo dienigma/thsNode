@@ -3,12 +3,13 @@ const app = express()
 const path = require('path')
 const file = path.join(__dirname,'file.pdf')
 const bodyParser = require('body-parser')
-
+const methodOverride = require('method-override')
 
 // const jsonParser = bodyParser.json()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
+app.use(methodOverride('_method'))
 // setting up the template engine
 app.set('view engine', 'ejs')
 
@@ -44,6 +45,13 @@ app.get('/download', (req,res) => {
 app.post('/',(req,res) => {
     // console.log(req.body.people)
     people.push(req.body.people)
+    res.redirect('/')
+})
+
+// Delete route
+
+app.delete('/',(req,res)=>{
+    people.pop(req.params.people)
     res.redirect('/')
 })
 
