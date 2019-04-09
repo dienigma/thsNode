@@ -5,3 +5,7 @@ body{
     background-color: amber;
     
 }
+
+.card{
+    margin: auto 0;
+}
