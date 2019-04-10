@@ -42,4 +42,17 @@ router.delete('/:id',(req,res) => {
     .catch(err => res.send(err))
 })
 
+// create a student
+
+router.get('/add',(req,res) => {
+    res.render('add')
+})
+
+router.post('/add',(req,res)=>{
+    db.Student.create(req.body)
+    .then(studentData => res.json({
+        message: `${studentData.name}'s identity created`
+    }))
+    .catch(err => res.send(err))
+})
 module.exports = router
