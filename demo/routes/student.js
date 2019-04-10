@@ -6,7 +6,9 @@ const db = require('../models')
 
 router.get('/',(req,res) => {
     db.Student.find()
-    .then((studentData) => res.json(studentData))
+    .then((studentData) =>{
+        
+    })
     .catch(err => res.send(err))
 })
 
@@ -14,7 +16,7 @@ router.get('/',(req,res) => {
 router.post('/',(req,res)=> {
     console.log(req.body)
     db.Student.create(req.body)
-    .then(studentData => res.json(studentData))
+    .then(studentData => res.json({name: studentData.name, number: studentData.phone}))
     .catch(err => res.send(err))
 })
 

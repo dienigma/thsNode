@@ -46,7 +46,7 @@ app.use(express.static(path.join(__dirname,'public')))
 
 const indexRouter = require('./routes/index')
 const userRouter = require('./routes/user')
-const studentRouter = require('./routes')
+const studentRouter = require('./routes/student')
 app.use('/',indexRouter)
 app.use('/user',userRouter)
 app.use('/students',studentRouter)
