@@ -46,6 +46,8 @@ app.use(express.static(path.join(__dirname,'public')))
 
 const indexRouter = require('./routes/index')
 const userRouter = require('./routes/user')
+const studentRouter = require('./routes')
 app.use('/',indexRouter)
 app.use('/user',userRouter)
+app.use('/students',studentRouter)
 app.listen(3000,()=> console.log(`Server Running on port 3000...`))
