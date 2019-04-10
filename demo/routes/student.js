@@ -2,16 +2,27 @@ const express = require('express')
 const router = express.Router()
 const db = require('../models')
 
+
+router.get('/add',(req,res) => {
+    res.render('add')
+})
 // get route student data
 
 router.get('/',(req,res) => {
     db.Student.find()
     .then((studentData) =>{
         // studentData.forEach(element => res.json(element))
-        res.json(studentData)
+        res.render('students',{studentData: studentData})
     })
     .catch(err => res.send(err))
 })
+
+router.post('/add',(req,res)=>{
+    db.Student.create(req.body)
+    .then(studentData => res.redirect('/students'))
+    .catch(err => res.send(err))
+})
+
 
 // post route - to create sudents
 router.post('/',(req,res)=> {
@@ -44,15 +55,5 @@ router.delete('/:id',(req,res) => {
 
 // create a student
 
-router.get('/add',(req,res) => {
-    res.render('add')
-})
 
-router.post('/add',(req,res)=>{
-    db.Student.create(req.body)
-    .then(studentData => res.json({
-        message: `${studentData.name}'s identity created`
-    }))
-    .catch(err => res.send(err))
-})
 module.exports = router
