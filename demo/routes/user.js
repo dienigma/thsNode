@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const db = require('../models')
 
 router.get('/login',(req,res)=>{
     res.render('login')
@@ -7,6 +8,17 @@ router.get('/login',(req,res)=>{
 
 router.post('/login',(req,res)=> {
     res.render('success')
+})
+
+router.get('/',(req,res) => {
+    db.User.find()
+    .then(data => res.json(data))
+    .catch(err => res.json(err))
+})
+
+router.post('/',(req,res)=>{
+    db.User.create(req.body)
+    .then(res.json({message:"Successful"}))
 })
 
 module.exports = router
