@@ -17,8 +17,19 @@ router.get('/',(req,res) => {
 })
 
 router.post('/',(req,res)=>{
-    db.User.create(req.body)
+    db.User.create(req.body).exec()
     .then(res.json({message:"Successful"}))
 })
 
+router.get('/:id',(req,res) =>{
+    db.User.findById(req.params.id).exec()
+    .then(user => res.json(user))
+    .catch(err => res.json(err))
+})
+
+router.put('/:id',(req,res)=>{
+    db.User.findByIdAndUpdate(req.params.id,req.body).exec()
+    .then(user => res.json(user))
+    .catch(err => res.json(err))
+})
 module.exports = router
